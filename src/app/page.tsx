@@ -6,56 +6,77 @@ const DEMO_OUTPUTS: Record<string, string> = {
   divorce: `SUPERIOR COURT OF FORSYTH COUNTY
 STATE OF GEORGIA
 
-IN RE THE MATTER OF: [Client Name], Petitioner,
-v. [Spouse Name], Respondent.
+IN RE THE MATTER OF:
+[Client Name], Petitioner,
+v.
+[Spouse Name], Respondent.
+
 Civil Action No.: ___________
 
 PETITION FOR DIVORCE
 
-COMES NOW [Client Name], Petitioner, and files this Petition for Divorce against [Spouse Name], Respondent, showing this Court:
+COMES NOW [Client Name], Petitioner in the above-styled matter, and files this Petition for Divorce against [Spouse Name], Respondent, respectfully showing this Court as follows:
 
 1. JURISDICTION & RESIDENCY
-Petitioner has been a bona fide resident of Georgia for more than six (6) months preceding filing, and is a resident of Forsyth County, Georgia.
+Petitioner has been a bona fide resident of the State of Georgia for a period in excess of six (6) months preceding the filing of this Petition, and is a resident of Forsyth County, Georgia.
 
-2. GROUNDS
-Petitioner seeks divorce on the grounds that the marriage is irretrievably broken (O.C.G.A. 19-5-3(13)).
+2. MARRIAGE
+The parties were lawfully married on [Date] in [City], Georgia. The marriage is irretrievably broken with no hope of reconciliation.
 
-WHEREFORE, Petitioner prays this Court grant a total divorce between the parties.`,
+3. GROUNDS
+Petitioner seeks divorce on the grounds that the marriage is irretrievably broken (O.C.G.A. § 19-5-3(13)).
+
+4. MINOR CHILDREN
+[To be completed based on client intake...]
+
+WHEREFORE, Petitioner prays that this Court grant a total divorce between the parties...`,
 
   criminal: `SUPERIOR COURT OF FORSYTH COUNTY
 STATE OF GEORGIA
 
-STATE OF GEORGIA v. [Client Name], Defendant.
+STATE OF GEORGIA,
+v.
+[Client Name], Defendant.
+
 Indictment No.: ___________
 
 MOTION TO SUPPRESS EVIDENCE
 
-COMES NOW [Client Name], Defendant, by and through undersigned counsel, and moves this Court pursuant to O.C.G.A. 17-5-30 to suppress all evidence obtained as a result of the unlawful search and seizure conducted on [Date].
+COMES NOW [Client Name], Defendant in the above-styled action, by and through undersigned counsel, and moves this Court pursuant to O.C.G.A. § 17-5-30 to suppress all evidence obtained as a result of the unlawful search and seizure conducted on [Date].
 
 I. STATEMENT OF FACTS
-On [Date], law enforcement conducted a search of Defendant's [vehicle/residence] at [Address], Cumming, Georgia.
 
-II. ARGUMENT
+On [Date], law enforcement officers conducted a search of Defendant's [vehicle/residence] located at [Address], Cumming, Georgia.
+
+II. ARGUMENT & CITATION OF AUTHORITY
+
 A. The Search Violated the Fourth Amendment
-The warrantless search was conducted without probable cause or valid warrant, in violation of the Fourth Amendment to the U.S. Constitution and Article I, Section I, Paragraph XIII of the Georgia Constitution.`,
+The warrantless search of Defendant's [vehicle/premises] was conducted without probable cause and without a valid warrant, in violation of the Fourth Amendment to the United States Constitution and Article I, Section I, Paragraph XIII of the Georgia Constitution...`,
 
-  estate: `LAST WILL AND TESTAMENT OF [Client Full Name]
+  estate: `LAST WILL AND TESTAMENT
+OF
+[Client Full Name]
 
-I, [Client Full Name], a resident of Forsyth County, Georgia, being of sound and disposing mind, do hereby make this Last Will and Testament, revoking all former Wills.
+I, [Client Full Name], a resident of Forsyth County, Georgia, being of sound and disposing mind and memory, do hereby make, publish, and declare this to be my Last Will and Testament, hereby revoking all former Wills and Codicils made by me.
 
-ARTICLE I: I am currently married to [Spouse Name]. I have [number] children: [Names].
+ARTICLE I — IDENTIFICATION
+I am currently married to [Spouse Name]. I have [number] children: [Names].
 
-ARTICLE II - PAYMENT OF DEBTS
-I direct my Personal Representative to pay all just debts, funeral expenses, and costs of administration as soon as practicable after my death.
+ARTICLE II — PAYMENT OF DEBTS
+I direct my Personal Representative to pay all of my just debts, funeral expenses, and the costs of administration of my estate as soon as practicable after my death.
 
-ARTICLE III - RESIDUARY ESTATE
-All the rest, residue, and remainder of my estate, both real and personal, I give to [Beneficiary].`,
+ARTICLE III — SPECIFIC BEQUESTS
+I give, devise, and bequeath the following specific items of property:
+[To be completed based on client intake...]
+
+ARTICLE IV — RESIDUARY ESTATE
+All the rest, residue, and remainder of my estate, both real and personal...`,
 };
 
 const PRACTICE_AREAS = [
-  { id: "divorce", label: "Divorce / Family Law", time: "8 min to 45 sec" },
-  { id: "criminal", label: "Criminal Defense", time: "12 min to 1 min" },
-  { id: "estate", label: "Estate Planning", time: "15 min to 2 min" },
+  { id: "divorce", label: "Divorce / Family Law", icon: "⚖️", time: "8 min → 45 sec" },
+  { id: "criminal", label: "Criminal Defense", icon: "🏛️", time: "12 min → 1 min" },
+  { id: "estate", label: "Estate Planning", icon: "📋", time: "15 min → 2 min" },
 ];
 
 const STATS = [
@@ -95,7 +116,7 @@ export default function Home() {
           </div>
           <div className="flex items-center gap-6">
             <a href="#demo" className="text-sm text-stone-500 hover:text-stone-900 transition-colors">Demo</a>
-            <a href="#gap" className="text-sm text-stone-500 hover:text-stone-900 transition-colors">The Gap</a>
+            <a href="#gap" className="text-sm text-stone-500 hover:text-stone-900 transition-colors">Who We Serve</a>
             <button
               onClick={() => document.getElementById("waitlist")?.scrollIntoView({ behavior: "smooth" })}
               className="text-sm bg-stone-900 text-white px-4 py-1.5 rounded-full hover:bg-stone-700 transition-colors"
@@ -114,21 +135,21 @@ export default function Home() {
             Built for Forsyth County & North Georgia attorneys
           </div>
           <h1 className="text-5xl font-bold text-stone-900 leading-tight tracking-tight mb-6">
-            Harvey is for BigLaw.<br />
-            <span className="text-stone-400">You need something built for you.</span>
+            Your clients need you.<br />
+            <span className="text-stone-400">Let AI handle the drafts.</span>
           </h1>
           <p className="text-xl text-stone-600 leading-relaxed mb-10 max-w-2xl">
-            CounselLocal is the AI legal assistant for solo and small firm attorneys — the ones handling divorce, criminal defense, estate planning, and real estate in communities like Cumming, GA. Not VC-backed startups. Not Am Law 200. <strong className="text-stone-800">You.</strong>
+            CounselLocal is the AI legal assistant built for solo and small firm attorneys in North Georgia. It drafts Georgia-specific documents — divorce petitions, motions to suppress, wills — in seconds, so you spend your time on the work that actually requires a lawyer.
           </p>
           <div className="flex items-center gap-4">
             <button
               onClick={() => document.getElementById("demo")?.scrollIntoView({ behavior: "smooth" })}
               className="bg-stone-900 text-white px-7 py-3.5 rounded-full font-medium hover:bg-stone-700 transition-colors"
             >
-              See it in action
+              See it in action →
             </button>
             <a href="#gap" className="text-stone-500 text-sm hover:text-stone-900 transition-colors underline underline-offset-4">
-              Why this market is ignored
+              Who it&apos;s built for
             </a>
           </div>
         </div>
@@ -164,6 +185,7 @@ export default function Home() {
                   : "border-stone-200 bg-white hover:border-stone-400 text-stone-700"
               }`}
             >
+              <div className="text-2xl mb-3">{area.icon}</div>
               <div className="font-semibold text-sm mb-1">{area.label}</div>
               <div className={`text-xs ${selected === area.id ? "text-stone-300" : "text-stone-400"}`}>
                 Draft time: {area.time}
@@ -184,7 +206,7 @@ export default function Home() {
           <div className="p-6 min-h-64 font-mono text-sm text-stone-700 leading-relaxed whitespace-pre-wrap">
             {!selected && (
               <div className="flex items-center justify-center h-48 text-stone-300 text-base font-sans">
-                Choose a practice area to generate a document
+                ← Choose a practice area to generate a document
               </div>
             )}
             {generating && (
@@ -202,36 +224,39 @@ export default function Home() {
         </div>
       </section>
 
-      {/* The Gap */}
+      {/* Who We Serve */}
       <section id="gap" className="bg-stone-900 text-white py-24">
         <div className="max-w-6xl mx-auto px-6">
-          <h2 className="text-3xl font-bold mb-4">The market everyone else is ignoring</h2>
+          <h2 className="text-3xl font-bold mb-4">Built for the attorneys who keep communities running</h2>
           <p className="text-stone-400 mb-16 max-w-2xl text-lg">
-            Harvey costs $1,200/seat/month with a 20-seat minimum. General Legal serves VC-backed startups. Nobody built this for the attorneys who keep communities running.
+            Solo and small firm attorneys in North Georgia handle the cases that matter most to real families — and do it without the resources of a large firm. CounselLocal is built around that reality.
           </p>
           <div className="grid grid-cols-3 gap-6">
             {[
-              { name: "Harvey AI", target: "Am Law 200 firms", price: "$1,200/seat/mo", min: "20 seat minimum", verdict: "Not for you", color: "red" },
-              { name: "General Legal", target: "VC-backed startups", price: "$250-1,000/contract", min: "Founders only", verdict: "Not for you", color: "red" },
-              { name: "CounselLocal", target: "Solo & small firms", price: "$149/mo flat", min: "No minimums", verdict: "Built for you", color: "green" },
+              {
+                icon: "⚖️",
+                title: "Solo practitioners",
+                desc: "One attorney. A full caseload. CounselLocal handles the drafts so you can handle the clients.",
+                detail: "Family law · Criminal defense · Estate planning",
+              },
+              {
+                icon: "🏛️",
+                title: "Small firms (2–5 attorneys)",
+                desc: "More cases, same hours. Automate the repeatable work across your whole team without adding headcount.",
+                detail: "Real estate · Civil litigation · Probate",
+              },
+              {
+                icon: "📍",
+                title: "North Georgia focus",
+                desc: "Every document is formatted for Georgia courts. Forsyth County. Cherokee. Dawson. Local language, local rules.",
+                detail: "Forsyth · Cherokee · Dawson · Hall counties",
+              },
             ].map((item) => (
-              <div
-                key={item.name}
-                className={`rounded-2xl p-6 border ${
-                  item.color === "green" ? "border-emerald-500 bg-emerald-950" : "border-stone-700 bg-stone-800"
-                }`}
-              >
-                <div className="font-bold text-lg mb-1">{item.name}</div>
-                <div className="text-stone-400 text-sm mb-5">{item.target}</div>
-                <div className="space-y-2 mb-5">
-                  <div className="text-sm"><span className="text-stone-500">Price: </span><span className="text-white font-medium">{item.price}</span></div>
-                  <div className="text-sm"><span className="text-stone-500">Min: </span><span className="text-white font-medium">{item.min}</span></div>
-                </div>
-                <div className={`inline-flex items-center gap-1.5 text-xs font-semibold px-3 py-1.5 rounded-full ${
-                  item.color === "green" ? "bg-emerald-500 text-white" : "bg-red-900/50 text-red-400"
-                }`}>
-                  {item.color === "green" ? "Built for you" : "Not for you"}
-                </div>
+              <div key={item.title} className="rounded-2xl p-6 border border-stone-700 bg-stone-800">
+                <div className="text-3xl mb-4">{item.icon}</div>
+                <div className="font-bold text-lg mb-2">{item.title}</div>
+                <p className="text-stone-400 text-sm leading-relaxed mb-4">{item.desc}</p>
+                <div className="text-xs text-stone-500 font-mono">{item.detail}</div>
               </div>
             ))}
           </div>
@@ -244,9 +269,21 @@ export default function Home() {
         <p className="text-stone-500 mb-16">Three steps. No IT department required.</p>
         <div className="grid grid-cols-3 gap-8">
           {[
-            { step: "01", title: "Client fills out intake", desc: "A simple form collects the facts. No more yellow legal pads." },
-            { step: "02", title: "AI drafts the document", desc: "Georgia-specific language. Forsyth County court formatting. Done in seconds." },
-            { step: "03", title: "You review and file", desc: "You are still the attorney. AI handles the repeatable work. You handle strategy." },
+            {
+              step: "01",
+              title: "Client fills out intake",
+              desc: "A simple form collects the facts. No more yellow legal pads.",
+            },
+            {
+              step: "02",
+              title: "AI drafts the document",
+              desc: "Georgia-specific language. Forsyth County court formatting. Done in seconds.",
+            },
+            {
+              step: "03",
+              title: "You review and file",
+              desc: "You're still the attorney. AI handles the repeatable work. You handle strategy.",
+            },
           ].map((item) => (
             <div key={item.step} className="relative">
               <div className="text-5xl font-bold text-stone-100 mb-4">{item.step}</div>
@@ -262,15 +299,18 @@ export default function Home() {
         <div className="max-w-6xl mx-auto px-6 text-center">
           <h2 className="text-3xl font-bold text-stone-900 mb-3">Join the waitlist</h2>
           <p className="text-stone-600 mb-10 max-w-md mx-auto">
-            We are onboarding the first 20 firms in North Georgia. Priority access for Forsyth, Cherokee, and Dawson County attorneys.
+            We&apos;re onboarding the first 20 firms in North Georgia. Priority access for Forsyth, Cherokee, and Dawson County attorneys.
           </p>
           {submitted ? (
             <div className="inline-flex items-center gap-2 bg-emerald-100 text-emerald-800 px-6 py-3 rounded-full font-medium">
-              You are on the list - we will be in touch
+              ✓ You&apos;re on the list — we&apos;ll be in touch
             </div>
           ) : (
             <form
-              onSubmit={(e) => { e.preventDefault(); if (email) setSubmitted(true); }}
+              onSubmit={(e) => {
+                e.preventDefault();
+                if (email) setSubmitted(true);
+              }}
               className="flex gap-3 max-w-md mx-auto"
             >
               <input
@@ -301,7 +341,7 @@ export default function Home() {
             </div>
             <span className="text-sm font-semibold text-stone-900">CounselLocal</span>
           </div>
-          <p className="text-xs text-stone-400">Built in Atlanta, GA - For North Georgia attorneys - Not a law firm</p>
+          <p className="text-xs text-stone-400">Built in Atlanta, GA · For North Georgia attorneys · Not a law firm</p>
         </div>
       </footer>
     </div>
